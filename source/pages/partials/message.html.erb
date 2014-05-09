@@ -1,13 +1,9 @@
 <div ng-controller='messageController'>
 
-  <form name="myForm" ng-submit='addUpdate()'>
-    <input type="text" name="statusUpdate" ng-model="newMessage.body" required placeholder='What are you working on?' class='statusUpdate'>
-    <span class="error" ng-show="myForm.userName.$error.required">
-      Required!</span><br>
-  </form>
+  <input type="text" ng-model="searchText" placeholder='Search' class='statusUpdate'>
 
-  <ul class="stream" infinite-scroll="loadMore()" infinite-scroll-distance="3" infinite-scroll-disabled='loading' ng-controller='messageController'>
-    <li ng-repeat="message in stream.messages track by $index" >
+  <ul class="stream" infinite-scroll="loadMore()" infinite-scroll-distance="3" infinite-scroll-disabled='stream.loading' ng-controller='messageController'>
+    <li ng-repeat="message in stream.messages | filter:searchText" >
       <div class='avatar'>
         <img ng-src='{{message.user.avatars.square45}}'>
       </div>

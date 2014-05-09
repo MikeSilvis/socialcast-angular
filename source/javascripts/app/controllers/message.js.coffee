@@ -1,4 +1,4 @@
-@socialcast.controller 'messageController', ['$scope', 'Message', ($scope, Message) ->
+@socialcast.controller 'messageController', ['$scope', '$routeParams', ($scope, $routeParams) ->
   $scope.stream = {
     loading: false,
     messages: [],
@@ -14,9 +14,9 @@
     $scope.stream.commentLimit = 100
 
   $scope.getMessages = ->
-    $scope.objectToQuery.$promise.then (messages) ->
+    $scope.objectToQuery({ page: ++$scope.stream.page, id: $routeParams.id }).$promise.then (messages) ->
       $scope.stream.loading = false
-      $scope.stream.messages = $scope.stream.messages.concat(messages.messages)
+      $scope.stream.messages = _.uniq($scope.stream.messages.concat(messages.messages))
 
   $scope.newMessage = {
     body: $scope.defaultMessage
