@@ -1,0 +1,14 @@
+<div ng-controller='userController'>
+  <h1>{{user.user.name}}</h1>
+  <div class='content'>
+
+    <div class='profile'>
+      <img ng-src='{{user.user.avatars.square140}}'>
+      <div class='title'>
+        {{user.user.title}}
+      </div>
+    </div>
+
+    <div ng-include src="'/pages/partials/message.html'"></div>
+  </div>
+</div>

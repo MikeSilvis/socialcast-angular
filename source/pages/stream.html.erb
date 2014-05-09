@@ -1,0 +1,12 @@
+<h1>{{topicName}}</h1>
+
+<div ng-controller='streamController' class='content'>
+
+  <form name="myForm" ng-submit='addUpdate()'>
+    <input type="text" name="statusUpdate" ng-model="newMessage.body" required placeholder='What are you working on?' class='statusUpdate'>
+    <span class="error" ng-show="myForm.userName.$error.required">
+      Required!</span><br>
+  </form>
+
+  <div ng-include src="'/pages/partials/message.html'"></div>
+</div>

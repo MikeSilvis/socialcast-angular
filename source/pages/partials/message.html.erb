@@ -1,0 +1,30 @@
+<ul class="stream" infinite-scroll="loadMore()" infinite-scroll-distance="3" infinite-scroll-disabled='loading' ng-controller='messageController'>
+  <li ng-repeat="message in stream.messages track by $index" >
+    <div class='avatar'>
+      <img ng-src='{{message.user.avatars.square45}}'>
+    </div>
+    <div class='message-content'>
+      <div class='name'>
+        <a ng-href='#/users/{{message.user.id}}'>{{message.user.name}}</a>
+      </div>
+      <div class='body' ng-bind-html="message.body | linky:'_blank' | mention: message.recipients"></div>
+    </div>
+    <ul class='comments'>
+      <li ng-repeat="comment in message.comments | limitTo:commentLimit">
+        <div class='avatar'>
+          <img ng-src='{{comment.user.avatars.square45}}'>
+        </div>
+        <div class='message-content'>
+          <div class='name'>
+            <a ng-href='#/users/{{comment.user.id}}'>{{comment.user.name}}</a>
+          </div>
+          <div class='body' ng-bind-html="comment.text | linky:'_blank' | mention"></div>
+        </div>
+      </li>
+      <li class='see-more' ng-show='message.comments.length > commentLimit'>
+        <a ng-click='seeMore()'>see more</a>
+      </li>
+    </ul>
+  </li>
+  <img src="/images/spinnerLarge.gif" alt="" ng-show='stream.loading' class='spinner' ng-animate="{show: 'fadeIn', hide:'fadeOut'}"/>
+</ul>
