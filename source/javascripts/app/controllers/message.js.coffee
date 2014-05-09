@@ -17,4 +17,18 @@
     $scope.objectToQuery.$promise.then (messages) ->
       $scope.stream.loading = false
       $scope.stream.messages = $scope.stream.messages.concat(messages.messages)
+
+  $scope.newMessage = {
+    body: $scope.defaultMessage
+    user: {
+      avatars: {
+        square45: 'https://gp1.wac.edgecastcdn.net/801245/s3.amazonaws.com/socialcast_staging/tenants/6/profile_photos/11227/1bwber02sx2vn35452ri_square45.png?AWSAccessKeyId=AKIAI6BMJILEM6YSJ66Q&Expires=1401624000&Signature=JO0Jkw2%2F91aTDLdoveGqzTXDEOg%3D'
+      }
+      name: 'Mike Silvis'
+    }
+  }
+
+  $scope.addUpdate = ->
+    $scope.stream.messages = $scope.stream.messages.unshift(angular.copy($scope.newMessage))
+    $scope.newMessage.body = ''
 ]

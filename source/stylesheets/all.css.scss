@@ -160,10 +160,12 @@ ul.stream li {
   width: 100%;
   text-align: center;
 }
-.see-more {
+ul.stream li.see-more {
   text-align: center;
+  min-height: 0px;
+  padding: 0px;
   font-size: 0.8em;
 }
-.see-more a:hover {
+ul.stream li.see-more a:hover {
   cursor: pointer;
 }

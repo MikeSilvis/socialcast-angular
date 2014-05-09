@@ -7,10 +7,9 @@
 //= require_self
 //= require_tree .
 
-token = '375ca32d0df4ffda969e7809878562f5'
+token = 'cc7afc7a136862c3337d82dd9f22aa93'
 socialcast = angular.module('socialcast',
               [
-                'classy',
                 'ngResource',
                 'ngRoute',
                 'infinite-scroll',

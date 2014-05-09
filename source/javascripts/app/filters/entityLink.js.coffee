@@ -5,7 +5,9 @@ angular.module("mentionFilter", []).filter "mention", ->
     for hashtag in (input.match(HASHTAG_REGEXP) || [])
       input = input.replace(hashtag, "<a href='#/topics/#{hashtag.replace('#', '').trim()}'>#{hashtag}</a>")
     for mention in (input.match(MENTION_REGEXP) || [])
+      break unless recipients
       stripMention = mention.replace('@', '').trim()
-      mentionId = (recipient for recipient in recipients when recipient.username is stripMention)[0].id
-      input = input.replace(mention, "<a href='#/users/#{mentionId}'>#{mention}</a>")
+      mentionUser = (recipient for recipient in recipients when recipient.username is stripMention)[0]
+      if mentionUser
+        input = input.replace(mention, "<a href='#/users/#{mentionUser.id}'>#{mention}</a>")
     input
